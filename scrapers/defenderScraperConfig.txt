@@ -1,0 +1,4 @@
+[config]
+feed_url = http://chicagodefender.com/feed/
+seconds_between_queries = 1
+printLog = 1

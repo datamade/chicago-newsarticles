@@ -1,0 +1,4 @@
+[config]
+feed_url = http://feeds.feedburner.com/wbez
+seconds_between_queries = 1
+printLog = 1
