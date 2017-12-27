@@ -52,8 +52,6 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     last_modified = models.DateTimeField(auto_now=True)
 
-    objects = ArticleQuerySet.as_manager()
-
     def __str__(self):
         return self.url[:60]
 

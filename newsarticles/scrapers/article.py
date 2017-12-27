@@ -169,7 +169,7 @@ class ArticleScraper(object):
         if existing_article:
             return ArticleResult(url, status=ArticleResult.SKIPPED)
 
-        article = Article(url=url, news_source=self.news_source, relevant=True)
+        article = Article(url=url, news_source=self.news_source)
         article.title = rss_article.title
         article.author = rss_article.author
         article.orig_html = rss_article.content[0]['value']
@@ -213,7 +213,7 @@ class ArticleScraper(object):
             article = existing_article
             status = ArticleResult.EXISTS
         else:
-            article = Article(url=url, news_source=self.news_source, relevant=True)
+            article = Article(url=url, news_source=self.news_source)
             status = ArticleResult.CREATED
 
         article.orig_html = body_html
