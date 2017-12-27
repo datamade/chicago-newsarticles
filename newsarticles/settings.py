@@ -119,3 +119,36 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'root': {
+        'handlers': ['console']
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s|%(asctime)s|%(module)s|%(process)d|%(message)s',
+            'datefmt' : "%Y-%m-%dT%H:%M:%S"
+        }
+    },
+    'loggers': {
+        'newsarticles': {
+            'level': 'DEBUG',
+            'propagate': True,
+        }
+    }
+}
