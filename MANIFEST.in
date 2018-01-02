@@ -1,0 +1,2 @@
+recursive-include newsarticles/conf *
+recursive-include newsarticles/fixtures *

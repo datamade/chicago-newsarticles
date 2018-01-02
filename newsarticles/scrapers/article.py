@@ -8,7 +8,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from newsarticles.models import Article, NewsSource, ScraperResult
 from .util import get_rss_links, parse_html_links, load_html, get_rss_articles
 
-USER_AGENT = 'CJP scraper (chicagojustice.org)'
+from django.conf import settings
+
+USER_AGENT = settings.USER_AGENT
 FAKE_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'
 
 LOG = logging.getLogger(__name__)
@@ -169,7 +171,7 @@ class ArticleScraper(object):
         if existing_article:
             return ArticleResult(url, status=ArticleResult.SKIPPED)
 
-        article = Article(url=url, news_source=self.news_source, relevant=True)
+        article = Article(url=url, news_source=self.news_source)
         article.title = rss_article.title
         article.author = rss_article.author
         article.orig_html = rss_article.content[0]['value']
@@ -213,7 +215,7 @@ class ArticleScraper(object):
             article = existing_article
             status = ArticleResult.EXISTS
         else:
-            article = Article(url=url, news_source=self.news_source, relevant=True)
+            article = Article(url=url, news_source=self.news_source)
             status = ArticleResult.CREATED
 
         article.orig_html = body_html
