@@ -152,3 +152,5 @@ LOGGING = {
         }
     }
 }
+
+USER_AGENT = 'CJP scraper (chicagojustice.org)'

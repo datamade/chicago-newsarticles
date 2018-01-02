@@ -12,7 +12,6 @@ from django.contrib.auth.models import User
 class NewsSource(models.Model):
     name = models.CharField(max_length=256)
     short_name = models.CharField(max_length=256, db_index=True)
-    legacy_feed_id = models.CharField(max_length=8, blank=True, db_index=True)
 
     def __str__(self):
         return self.name
@@ -47,10 +46,10 @@ class Article(models.Model):
     url = models.CharField(max_length=1024, unique=True, db_index=True)
     title = models.TextField()
     author = models.CharField(max_length=1024, default="", blank=True)
-    bodytext = models.TextField()
+    body_text = models.TextField()
     orig_html = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True, db_index=True)
-    last_modified = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.url[:60]
